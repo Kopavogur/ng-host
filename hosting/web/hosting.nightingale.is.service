@@ -1,0 +1,14 @@
+[Unit]
+Description=Nightingale Web for hosting.nightingale.is.
+Documentation=https://github.com/Kopavogur/nightingale
+Requires=docker.service nginx-proxy.service hosting-api.nightingale.is.service
+After=docker.service nginx-proxy.service hosting-api.nightingale.is.service
+ 
+[Service]
+RemainAfterExit=yes
+WorkingDirectory=/dockerstage/hosting/web
+ExecStart=/usr/local/bin/docker-compose up -d
+ExecStop=/usr/local/bin/docker-compose down
+ 
+[Install]
+WantedBy=multi-user.target

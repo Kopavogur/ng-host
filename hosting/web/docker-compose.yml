@@ -1,0 +1,47 @@
+# To debug prevent regular startup and get a shell with
+# docker-compose run --entrypoint bash web
+
+version: '3.7'
+
+services:
+  web:
+    build: 
+      context: checkout/Nightingale
+    image: ${HOST_FQDN}
+    expose:
+      - ${CONTAINER_PORT}
+    hostname: ${HOST_FQDN}
+    volumes:
+      - /dockerstage/logs:/apps/nightingale/logs
+      - /dockerstage/hosting/web/appsettings.json:/apps/nightingale/appsettings.json
+      - /dockerstage/hosting/web/EntityFiles:/apps/EntityFiles
+      - ~/.ssh:/apps/nightingale/.ssh:ro
+    healthcheck:
+      test: curl --fail -s http://${HOST_FQDN}/Health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    environment:
+      VIRTUAL_HOST: ${HOSTS}
+      VIRTUAL_PORT: ${CONTAINER_PORT}
+      LETSENCRYPT_HOST: ${HOSTS}
+      LETSENCRYPT_EMAIL: ${DEFAULT_FROM_EMAIL}
+      POSTGRES_HOST_AUTH_METHOD: trust
+      API_URL: ${API_URL}
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      API_URL: ${API_URL}
+      HOST_FQDN: ${HOST_FQDN}
+      HOSTS: ${HOSTS}
+      HOST_USER: ${HOST_USER}
+      HOST_KEY: ${HOST_KEY}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+networks:
+  default:
+    external:
+      name: nginx-proxy
+

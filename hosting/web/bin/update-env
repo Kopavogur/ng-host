@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+
+$hosts_file = "conf.d/hosts";
+my @hosts_array;
+open (IN, $hosts_file) || die "Cannot open file ".$hosts_file." for read";
+@hosts_array = <IN>;
+chomp(@hosts_array);
+close IN;
+$hosts = join(',', grep(s/\s*$//g, @hosts_array));
+
+$file = "site.env";
+open (IN, $file) || die "Cannot open file ".$file." for read";     
+@lines=<IN>;  
+close IN;
+ 
+open (OUT, ">", $file) || die "Cannot open file ".$file." for write";
+foreach $line (@lines)
+{  
+   $line =~ s/^HOSTS=.*/HOSTS=$hosts/g;  
+   print OUT $line;
+}  
+close OUT;
+

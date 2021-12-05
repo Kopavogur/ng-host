@@ -1,0 +1,121 @@
+$ORIGIN nightingale.is.
+$TTL	86400
+@                       	IN      CAA     0 issue "letsencrypt.org"
+@				IN	SOA	ns1.nightingale.is. root.nightingale.is. (
+                        	 2021111601         ; Serial
+                        	     604800         ; Refresh
+                        	      86400         ; Retry
+                        	    2419200         ; Expire
+                        	      86400 )       ; Negative Cache TTL
+@				IN	A	40.69.22.208
+				IN	NS	ns1.nightingale.is.
+				IN      NS      ns2.nightingale.is.
+
+				IN	MX	5	mail.nightingale.is.
+				IN	TXT	"v=spf1 mx a ip4:40.69.22.208"
+_DMARC				IN	TXT	"v=DMARC1; p=none; rua=mailto:tolli@kopavogur.is; ruf=mailto:tolli@kopavogur.is; fo=1; adkim=r; aspf=r"
+	
+ns1				IN	A	40.69.22.208
+ns2				IN	A	40.69.22.208
+
+mail				IN	A	40.69.22.208
+
+dev				IN	CNAME	@
+
+ng-dev				IN	CNAME	@
+ng-dev-kop			IN      CNAME   @
+ng-api-dev			IN	CNAME	@
+ng-stage			IN	CNAME	@
+ng-api-stage			IN	CNAME	@
+ng-prod				IN	CNAME	@
+ng-api-prod			IN	CNAME	@
+ng-show				IN	CNAME	@
+ng-api-show			IN	CNAME	@
+
+notko-dev			IN	CNAME	@
+
+jenkins				IN	CNAME	@
+elk				IN	CNAME	@
+
+hosting-api			IN	CNAME	@
+hosting-stage-api		IN	CNAME	@
+
+cubus				IN      CNAME   @
+expectus			IN      CNAME   @
+
+hosting.nightingale.is.			IN	CNAME	@
+hosting-stage.nightingale.is.		IN	CNAME	@
+stjornarradid.nightingale.is.		IN	CNAME	@
+akrahreppur.nightingale.is.		IN	CNAME	@
+akranes.nightingale.is.			IN	CNAME	@
+akureyri.nightingale.is.		IN	CNAME	@
+arborg.nightingale.is.			IN	CNAME	@
+arneshreppur.nightingale.is.		IN	CNAME	@ 
+asahreppur.nightingale.is.		IN	CNAME	@
+blaskogabyggd.nightingale.is.		IN	CNAME	@
+blonduos.nightingale.is.		IN	CNAME	@
+bolungarvik.nightingale.is.		IN	CNAME	@
+borgarbyggd.nightingale.is.		IN	CNAME	@
+dalir.nightingale.is.			IN	CNAME	@
+dalvik.nightingale.is.			IN	CNAME	@
+drangsnes.nightingale.is.		IN	CNAME	@ 
+eyjafjardarsveit.nightingale.is.	IN	CNAME	@
+eyjaogmikla.nightingale.is.		IN	CNAME	@
+fjallabyggd.nightingale.is.		IN	CNAME	@
+fjardabyggd.nightingale.is.		IN	CNAME	@
+fljotsdalshreppur.nightingale.is.	IN	CNAME	@
+fludir.nightingale.is.			IN	CNAME	@
+gardabaer.nightingale.is.		IN	CNAME	@
+gogg.nightingale.is.			IN	CNAME	@
+grenivik.nightingale.is.		IN	CNAME	@
+grindavik.nightingale.is.		IN	CNAME	@
+grundarfjordur.nightingale.is.		IN	CNAME	@
+hafnarfjordur.nightingale.is.		IN	CNAME	@
+helgafellssveit.nightingale.is.		IN	CNAME	@
+horgarsveit.nightingale.is.		IN	CNAME	@ 
+hornafjordur.nightingale.is.		IN	CNAME	@
+hunathing.nightingale.is.		IN	CNAME	@
+hunavatnshreppur.nightingale.is.	IN	CNAME	@ 
+hvalfjardarsveit.nightingale.is.	IN	CNAME	@
+hveragerdi.nightingale.is.		IN	CNAME	@
+hvolsvollur.nightingale.is.		IN	CNAME	@
+isafjordur.nightingale.is.		IN	CNAME	@
+kjos.nightingale.is.			IN	CNAME	@
+klaustur.nightingale.is.		IN	CNAME	@
+kopavogur.nightingale.is.		IN	CNAME	@
+mosfellsbaer.nightingale.is.		IN	CNAME	@
+mulathing.nightingale.is.		IN	CNAME	@
+myv.nightingale.is.			IN	CNAME	@
+nordurthing.nightingale.is.		IN	CNAME	@
+olfus.nightingale.is.			IN	CNAME	@
+reykholar.nightingale.is.		IN	CNAME	@
+reykjanesbaer.nightingale.is.		IN	CNAME	@
+reykjavik.nightingale.is.		IN	CNAME	@
+ry.nightingale.is.			IN	CNAME	@
+seltjarnarnes.nightingale.is.		IN	CNAME	@
+showcase.nightingale.is.		IN	CNAME	@
+skagabyggd.nightingale.is.		IN	CNAME	@
+skagafjordur.nightingale.is.		IN	CNAME	@
+skagastrond.nightingale.is.		IN	CNAME	@
+skeidgnup.nightingale.is.		IN	CNAME	@
+skorradalur.nightingale.is.		IN	CNAME	@
+snb.nightingale.is.			IN	CNAME	@
+strandabyggd.nightingale.is.		IN	CNAME	@
+stykkisholmur.nightingale.is.		IN	CNAME	@
+sudavik.nightingale.is.			IN	CNAME	@
+sudurnesjabaer.nightingale.is.		IN	CNAME	@
+svalbardshreppur.nightingale.is.	IN	CNAME	@ 
+svalbardsstrond.nightingale.is.		IN	CNAME	@
+talknafjordur.nightingale.is.		IN	CNAME	@
+thingborg.nightingale.is.		IN	CNAME	@ 
+thingeyjarsveit.nightingale.is.		IN	CNAME	@
+thorshofn.nightingale.is.		IN	CNAME	@
+tjorneshreppur.nightingale.is.		IN	CNAME	@
+vestmannaeyjar.nightingale.is.		IN	CNAME	@
+vesturbyggd.nightingale.is.		IN	CNAME	@
+vik.nightingale.is.			IN	CNAME	@
+vogar.nightingale.is.			IN	CNAME	@
+vopnafjardarhreppur.nightingale.is.	IN	CNAME	@
+
+postgres                        IN      CNAME   nightingalepostgres.postgres.database.azure.com.
+

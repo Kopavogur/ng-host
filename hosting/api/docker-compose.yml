@@ -1,0 +1,36 @@
+# To debug prevent regular startup and get a shell with
+# docker-compose run --entrypoint sh api
+
+
+version: '3.7'
+
+services:
+  api:
+    build: checkout/nightingaleRest
+    image: ${HOST_FQDN}
+    container_name: ${HOST_FQDN}
+    hostname: ${HOST_FQDN}
+    command: bash -c "python manage.py runserver 0.0.0.0:80"
+    volumes:
+      - /dockerstage/hosting/api/checkout/nightingaleRest/Nightingale:/apps/nightingaleApi 
+      - /dockerstage/logs:/apps/nightingaleApi/logs
+      - /dockerstage/hosting/api/site.env:/apps/nightingaleApi/.env
+    expose:
+      - 80
+    ports:
+      - ${HOST_PORT}:80
+    environment:
+      VIRTUAL_HOST: ${HOST_FQDN}
+      VIRTUAL_PORT: ${HOST_PORT}
+      LETSENCRYPT_HOST: ${HOST_FQDN}
+      LETSENCRYPT_EMAIL: ${CERT_TO_EMAIL}
+      POSTGRES_HOST_AUTH_METHOD: trust
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+networks:
+  default:
+    external:
+      name: nginx-proxy

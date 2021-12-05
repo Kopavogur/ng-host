@@ -1,0 +1,18 @@
+#!/usr/bin/perl
+
+$hosts_file = "conf.d/hosts";
+my @hosts_array;
+open (IN, $hosts_file) || die "Cannot open file ".$hosts_file." for read";
+@hosts_array = <IN>;
+chomp(@hosts_array);
+close IN;
+
+foreach $host (@hosts_array)
+{ 
+    	
+    print "SDG_RING_TARGET_TITLE_".$host."_1 => Yfirmarkmið\n";
+    for my $subscript (2..9) { 
+        print "SDG_RING_TARGET_TITLE_".$host."_".$subscript." => Undirmarkmið\n";
+    }
+}  
+

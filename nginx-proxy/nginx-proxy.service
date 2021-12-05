@@ -1,0 +1,15 @@
+[Unit]
+Description=NGinX proxy to host webservers under multiple domain names on this box all on one IP address.
+Documentation=http://nginx.org/
+Requires=docker.service
+After=docker.service
+
+[Service]
+RemainAfterExit=yes
+WorkingDirectory=/dockerstage/nginx-proxy
+ExecStart=/usr/local/bin/docker-compose up -d
+ExecStop=/usr/local/bin/docker-compose down
+
+[Install]
+WantedBy=multi-user.target
+

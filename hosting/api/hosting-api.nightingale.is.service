@@ -1,0 +1,17 @@
+[Unit]
+Description=Nightingale API service for hosting-api.nightingale.is.
+Documentation=https://github.com/Kopavogur/nightingaleRest
+Requires=docker.service nginx-proxy.service
+After=docker.service nginx-proxy.service
+ 
+[Service]
+RemainAfterExit=yes
+Environment=PYTHONUNBUFFERED=true
+Type=notify
+WorkingDirectory=/dockerstage/hosting/api
+ExecStart=/usr/local/bin/docker-compose up -d 
+ExecStop=/usr/local/bin/docker-compose down
+ 
+[Install]
+WantedBy=multi-user.target
+

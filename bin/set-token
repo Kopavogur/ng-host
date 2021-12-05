@@ -1,0 +1,6 @@
+#! /bin/bash
+
+export LOGIN_RESPONSE=$(curl -X POST "https://ng-api-dev.nightingale.is/token/" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"email\": \"bjorngun@kopavogur.is\",  \"password\": \"test_password\"}")
+
+export TOKEN=$(echo $LOGIN_RESPONSE | jtc -qq -w'<access>l:')
+

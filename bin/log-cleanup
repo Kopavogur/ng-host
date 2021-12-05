@@ -1,0 +1,34 @@
+#! /bin/bash
+
+stage_path="/dockerstage"
+logs_path="$stage_path/logs"
+
+purge_log () {
+    local h=$1
+    local f="$(log_file_path $h)"
+    if [ -f $f ]
+    then
+        echo "TRUNCATE $f"
+        truncate -s 0 $f
+        echo "RESTART DOCKER $h"
+        docker restart $h
+    else
+	echo "*** Log file $f does not exist"
+    fi
+}
+
+log_file_path () {
+    echo "$logs_path/$1/$1-queries.log"
+}
+
+for d in `ls $stage_path`; do
+    f="$(log_file_path $d)"
+    if [ -f $f ]
+    then
+        purge_log $d
+    fi
+done
+
+purge_log hosting-api.nightingale.is
+purge_log hosting-stage-api.nightingale.is
+
